@@ -7,9 +7,9 @@ import UnauthorizedError from '@src/errors/UnauthorizedError'
 
 const login = async (req: Request) => {
   try {
-    const { username, password } = req.body
+    const { email, password } = req.body
     const userRepo = AppDataSource.getRepository(Account)
-    const existingAccount = await userRepo.findOne({ where: { username } })
+    const existingAccount = await userRepo.findOne({ where: { email } })
     if (!existingAccount) {
       throw new NotFoundError('Tài khoản không hợp lệ!')
     }
